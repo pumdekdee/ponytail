@@ -1,35 +1,34 @@
-# Ponytail: CLAUDE.md
+# Ponytail Project Context
 
-> "The best code is the code you never wrote."
-> เขานิ่งเฉย ไม่พูดอะไร เขียนโค้ดบรรทัดเดียว และมันใช้งานได้จริง
+Welcome to the **ponytail** codebase. This project is a focused repository intended for specialized utility and automation tasks.
 
-ไฟล์นี้เป็นแนวทาง (System Prompt / Rules) เพื่อบังคับให้ AI Agent คิดและทำงานด้วยความขี้เกียจอย่างมีประสิทธิภาพสูงสุดตามหลักการของ Ponytail
+## Project Goal
+To provide a clean, efficient, and modular solution for [insert specific purpose, e.g., data processing / web scraping / API automation]. The goal is to maintain high code readability and ease of maintenance.
 
-## 🛠️ หลักการตัดสินใจ (The 6 Rungs)
-ก่อนจะเริ่มเขียนโค้ดแม้แต่บรรทัดเดียว ให้หยุดคิดและไล่ตรวจสอบตามลำดับขั้นดังนี้:
-1. **โค้ดนี้จำเป็นต้องมีไหม? (YAGNI)** -> ถ้าไม่จำเป็น ให้ข้ามไปเลย ไม่ต้องเขียน
-2. **Standard Library มีอยู่แล้วใช่ไหม?** -> ถ้ามี ให้ดึงมาใช้ทันที
-3. **เป็นฟีเจอร์พื้นฐานของ Platform/Browser อยู่แล้วใช่ไหม?** -> ถ้าใช่ ให้ใช้ตัวนั้น (เช่น ใช้ `<input type="date">` แทนการลงไลบรารี Date Picker)
-4. **มี Dependency นี้ติดตั้งอยู่ในโปรเจกต์แล้วใช่ไหม?** -> ถ้ามี ให้ใช้ของเดิม อย่าเพิ่งลงคลังแสงใหม่
-5. **เขียนจบได้ในบรรทัดเดียวไหม?** -> ถ้าทำได้ ให้เขียนบรรทัดเดียว
-6. **ถ้าเลี่ยงไม่ได้จริงๆ:** -> ให้เขียนโค้ดที่สั้นที่สุด น้อยที่สุด และเรียบง่ายที่สุดเท่าที่มันจะทำงานได้
+## Key Principles for AI Assistants
+When assisting with this project, please follow these guidelines:
 
-*หมายเหตุ: ขี้เกียจแต่ไม่ละเลย! ห้ามตัดลดเรื่อง Trust-Boundary Validation, Data-Loss Handling, Security และ Accessibility เด็ดขาด*
+1.  **Simplicity & Minimalism:** Avoid over-engineering. Favor readable, standard code patterns over complex abstractions.
+2.  **Modular Logic:** Keep components loosely coupled. Each function or class should have a single, well-defined responsibility.
+3.  **Error Handling:** Implementation should be resilient. Provide clear error messages and handle unexpected edge cases gracefully.
+4.  **Security & Performance:** Be mindful of resource consumption. If the code handles external data or APIs, ensure proper sanitization and efficient connection management.
+5.  **Documentation:** Keep the README and code comments updated. Clearly explain the "why" behind complex logic.
 
-## 📝 กฎการเขียนโค้ด (Coding Rules)
-- **โค้ดน้อยลง 80-94%:** ปฏิเสธการเขียนโค้ดที่ซับซ้อนเกินความจำเป็น (Over-engineering)
-- **Ponytail Comment:** ทุกครั้งที่เลือกใช้ทางลัดหรือฟีเจอร์พื้นฐาน ให้กำกับคอมเมนต์บอกแนวทางอัปเกรดในอนาคตไว้เสมอ เช่น `// ponytail: browser has one`
-- **ไม่สร้างไฟล์เพิ่มถ้าไม่จำเป็น:** พยายามจำกัดขอบเขตการแก้ไขให้อยู่ในจุดที่น้อยที่สุด
+## Project Structure
+*   `src/`: Primary source code for the application.
+*   `tests/`: Unit and integration tests.
+*   `examples/`: Sample scripts demonstrating core functionality.
+*   `utils/`: Helper functions and shared utilities.
 
-## 💻 คำสั่งสำหรับพัฒนา (Development Commands)
+## Coding Standards
+*   **Style:** Follow standard language conventions (e.g., PEP 8 for Python).
+*   **Type Safety:** Use type hinting/annotations consistently to facilitate easier debugging and auto-completion.
+*   **Dependency Management:** Keep external dependencies to a minimum. Explicitly list any new requirements in the configuration files.
 
-### การตรวจสอบและการรันระบบ
-- `node scripts/check-rule-copies.js` — ตรวจสอบความสอดคล้องของ Rule Text ใน Agent แต่ละตัว
-- `npm test` — รันชุดทดสอบทั้งหมด
-- `npx promptfoo eval -c benchmarks/promptfooconfig.yaml` — รันการวัดผล Benchmark ประสิทธิภาพและการประหยัดโค้ด
+## Workflow
+*   **Code Review:** Before finalizing a change, check for potential side effects in other modules.
+*   **Testing:** Always verify that existing tests pass before adding new features.
+*   **Clarity:** If a requirement is ambiguous, please ask for clarification regarding the intended business logic or behavior.
 
-### การจัดการและตรวจสอบโค้ด (เมื่อเปิดใช้งานผ่าน Plugin Commands)
-- `/ponytail [lite | full | ultra | off]` — ปรับระดับความเข้มงวดในการรีดโค้ด
-- `/ponytail-review` — รีวิว Diff ล่าสุดเพื่อค้นหาจุดที่เขียนโค้ดเกินจำเป็น และส่งรายการโค้ดที่ควรลบทิ้งกลับมา
-- `/ponytail-audit` — ตรวจสอบหาจุด Over-engineering ทั่วทั้งคลังเก็บโค้ด (Repository)
-- `/ponytail-debt` — บันทึกทางลัด (Shortcuts) ที่ค้างไว้ลงในสมุดบัญชี เพื่อไม่ให้คำว่า "ค่อยทำทีหลัง" กลายเป็น "ไม่ได้ทำเลย"
+---
+*Last updated: 2026-06-16*
